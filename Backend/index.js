@@ -17,7 +17,7 @@ const users = new Map();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: 'https://assing-carrotio.vercel.app',
   credentials: true
 }));
 
@@ -54,7 +54,7 @@ passport.deserializeUser((id, done) => {
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: process.env.GOOGLE_CALLBACK_URL || 'http://localhost:4000/auth/google/callback',
+    callbackURL: process.env.GOOGLE_CALLBACK_URL,
     scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar.readonly']
   },
   async (accessToken, refreshToken, profile, done) => {
@@ -130,8 +130,8 @@ app.get('/auth/google',
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { 
-    successRedirect: process.env.CLIENT_URL || 'http://localhost:3000/dashboard',
-    failureRedirect: process.env.CLIENT_URL || 'http://localhost:3000/login' 
+    successRedirect: CLIENT_URL + '/dashboard',
+    failureRedirect: CLIENT_URL + '/login',
   })
 );
 
