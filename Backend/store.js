@@ -12,7 +12,7 @@ dotenv.config();
 const app = express();
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://abhinav29072003:Legend100@cluster0.t0jdg.mongodb.net/carotio?retryWrites=true&w=majority", {
+mongoose.connect("mobgo_uri", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
